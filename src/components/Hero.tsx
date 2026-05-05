@@ -2,7 +2,6 @@ import { useEffect, useRef } from 'react'
 
 const cards = [
   'Full-Stack Dev',
-  'Entrepreneur',
   'Builder',
   'Open to Work',
 ]
