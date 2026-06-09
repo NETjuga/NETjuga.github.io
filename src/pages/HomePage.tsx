@@ -13,7 +13,7 @@ import mcCover from "../images/mc-cover.png";
 
 import cnpCover from "../images/CNP-BC.png";
 import collectiveCover from "../images/collectvie-BC.png";
-import leadsCover from "../images/leads-BC.png";
+import leadsCover from "../images/Leads-BC.png";
 import dataCover from "../images/Data-BC.png";
 import ivanCover from "../images/ivan-BC.png";
 import artOfBusinessCover from "../images/Artofbusiness-BC.png";
@@ -32,13 +32,12 @@ import TNSmp3 from "../Songs/TNS.mp3";
 
 import runStamp from "../images/RUNNOTE.png";
 
-import PCBstamp from "../images/PCBstamp.png";   
+import PCBstamp from "../images/PCBstamp.png";
 import TELEstamp from "../images/TELEstamp.png";
 import TELEDATAstamp from "../images/TELEDATAstamp.png";
 
 import robohandVideo from "../images/ROBOHAND.mp4";
 import miniradarVideo from "../images/MINIRADAR.mp4";
-
 
 import intExploreIcon from "../images/intexplore.png";
 
@@ -51,17 +50,13 @@ import chapterlyNotes from "../images/notes.png";
 import chapterlyOnboarding from "../images/onboarding.png";
 import chapterlyVideo from "../images/chapterly_demo.mp4";
 
-
-
 // CodeSum project assets
 import codesumImg1 from "../images/codesum_img1.png";
 import codesumImg2 from "../images/codesum_img2.png";
 import codesumImg3 from "../images/codesum_img3.png";
 import codesumVideo from "../images/codesum_demo.mp4";
 
-import obsidIcon from "../images/obsid-icon.png"; 
-
-
+import obsidIcon from "../images/obsid-icon.png";
 
 // StudentWire project images
 import SWimage1 from "../images/SWimage-1.png";
@@ -72,26 +67,11 @@ import SWimage5 from "../images/SWimage-5.png";
 import SWimage6 from "../images/SWimage-6.png";
 import SWimage7 from "../images/SWimage-7.png";
 
-
 import tbImage1 from "../images/TBimage-1.png";
 import tbImage2 from "../images/TBimage-2.png";
 import tbImage3 from "../images/TBimage-3.png";
-// Unreal Engine game dev images/videos
-import unrealGameImg1 from "../images/unreal-game-1.png";
-import unrealGameImg2 from "../images/unreal-game-2.png";
-import unrealGameVideo from "../images/unreal-game-demo.mp4";
-// Expo Go / Ikioi mobile images
-import ikioiMobileImg1 from "../images/ikioi-mobile-1.png";
-import ikioiMobileImg2 from "../images/ikioi-mobile-2.png";
-import placeholderImg from "../images/placeholder.png";  // you can put any dummy image there
 
-
-// Unreal Engine project videos
-import unrealVideo1 from "../images/Unrealengine-1.mp4";
-import unrealVideo2 from "../images/Unrealengine-2.mp4";
-import unrealVideo3 from "../images/Unrealengine-3.mp4";
-import unrealVideo4 from "../images/Unrealengine-4.mp4";
-import unrealVideo5 from "../images/Unrealengine-5.mp4";
+import placeholderImg from "../images/placeholder.png";
 
 import swUserIcon from "../images/SWuserICON.png";
 import hackusericon from "../images/HackuserICON.png";
@@ -1037,7 +1017,6 @@ const SKILL_PROJECTS: Record<string, SkillProject[]> = {
       year: 2022,
       status: "Prototype",
       images: [placeholderImg],
-      videos: [unrealVideo1, unrealVideo2, unrealVideo3, unrealVideo4, unrealVideo5]
     },
     {
       title: "NetSentry — Network Intrusion Detection",
@@ -1116,7 +1095,6 @@ const SKILL_PROJECTS: Record<string, SkillProject[]> = {
       year: 2022,
       status: "Prototype",
       images: [placeholderImg],
-      videos: [unrealVideo1, unrealVideo2, unrealVideo3, unrealVideo4, unrealVideo5]
     },
   ],
   "Expo Go": [
