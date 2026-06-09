@@ -1,215 +1,259 @@
-@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;700&family=DM+Serif+Display:ital@0;1&family=JetBrains+Mono:wght@400;500&display=swap');
-
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
-:root {
-  font-family: 'DM Sans', system-ui, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
-  color: #1a1714;
-  background: #f7f4ef;
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
 * {
+  margin: 0;
+  padding: 0;
   box-sizing: border-box;
 }
 
-html {
-  scroll-behavior: smooth;
-}
-
 body {
-  margin: 0;
-  min-width: 320px;
-  background: #f7f4ef;
-  color: #1a1714;
+  background: #3a6ea5;  /* classic win95 desktop background – can also be teal or gray */
+  font-family: 'Courier New', 'MS Sans Serif', 'Fixedsys', monospace;
+  overflow-x: hidden;
 }
 
-button,
-input,
-textarea {
-  font: inherit;
+/* Desktop background pattern (optional subtle grid) */
+.desktop {
+  background: #008080; /* teal, classic win95 */
+  min-height: 100vh;
+  padding: 20px;
 }
 
-a {
-  color: inherit;
+/* WINDOW FRAME */
+.window {
+  background: #ece9d8;
+  border: 2px solid;
+  border-color: #ffffff #808080 #808080 #ffffff;
+  box-shadow: 2px 2px 0px 0px #00000022;
+  margin: 2rem auto;
+  max-width: 800px;
+  width: 90%;
 }
 
-.page-shell {
-  max-width: 1100px;
-  margin: 0 auto;
-  padding: 0 2.5rem;
-}
-
-.section-label {
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 0.68rem;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: #8a857e;
-}
-
-.divider {
-  width: 100%;
-  height: 1px;
-  background: #ddd8d0;
-}
-
-.fade-up {
-  opacity: 0;
-  transform: translateY(18px);
-  transition: opacity 0.7s ease, transform 0.7s ease;
-}
-
-.fade-up.visible {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-.nav-link {
-  font-size: 0.82rem;
-  color: #8a857e;
-  font-weight: 300;
-  transition: color 0.2s ease;
-}
-
-.nav-link:hover {
-  color: #1a1714;
-}
-
-.btn-primary,
-.btn-ghost {
-  padding: 0.9rem 1.25rem;
-  border-radius: 999px;
-  border: 1px solid #1a1714;
-  cursor: pointer;
-  transition: transform 0.2s ease, background 0.2s ease, color 0.2s ease;
-}
-
-.btn-primary {
-  background: #1a1714;
-  color: #f7f4ef;
-}
-
-.btn-ghost {
-  background: transparent;
-  color: #1a1714;
-}
-
-.btn-primary:hover,
-.btn-ghost:hover {
-  transform: translateY(-1px);
-}
-
-.btn-ghost:hover {
-  background: rgba(26, 23, 20, 0.04);
-}
-
-.tag {
-  display: inline-flex;
+/* Title bar */
+.title-bar {
+  background: #000080;
+  padding: 4px 6px;
+  display: flex;
+  justify-content: space-between;
   align-items: center;
-  padding: 0.35rem 0.6rem;
-  border-radius: 999px;
-  background: #efe9df;
-  color: #5f5a53;
-  font-size: 0.72rem;
-  font-family: 'JetBrains Mono', monospace;
+  color: white;
+  font-weight: bold;
+  font-family: 'MS Sans Serif', 'Courier New', monospace;
+  font-size: 12px;
 }
 
-.project-card {
-  transition: background 0.2s ease;
+.title-bar-text {
+  letter-spacing: 0.5px;
 }
 
-.project-card:hover {
-  background: rgba(232, 226, 217, 0.45);
+.title-bar-controls {
+  display: flex;
+  gap: 2px;
 }
 
-.skill-bar-track {
+.title-bar-controls button {
+  background: #c0c0c0;
+  border: 1px solid;
+  border-color: #ffffff #808080 #808080 #ffffff;
+  width: 16px;
+  height: 14px;
+  font-size: 10px;
+  line-height: 1;
+  text-align: center;
+  cursor: pointer;
+  font-family: monospace;
+}
+
+/* Window content area */
+.window-content {
+  padding: 20px;
+  background: #ffffff;
+  border: 1px solid #808080;
+  margin: 2px;
+}
+
+/* Classic buttons */
+.btn-classic {
+  background: #c0c0c0;
+  border: 2px solid;
+  border-color: #ffffff #808080 #808080 #ffffff;
+  padding: 4px 12px;
+  font-family: inherit;
+  font-size: 11px;
+  cursor: pointer;
+}
+
+.btn-classic:active {
+  border-color: #808080 #ffffff #ffffff #808080;
+}
+
+/* Menu list */
+.menu-list {
+  list-style: none;
+  padding: 0;
+}
+
+.menu-list li {
+  margin: 12px 0;
+}
+
+.menu-list a, .menu-list button {
+  display: block;
+  background: #ece9d8;
+  border: 1px solid #808080;
+  padding: 6px 12px;
+  text-decoration: none;
+  color: black;
+  font-family: monospace;
+  font-size: 14px;
+  cursor: pointer;
   width: 100%;
-  height: 8px;
-  background: #e8e2d9;
-  border-radius: 999px;
-  overflow: hidden;
+  text-align: left;
 }
 
-.skill-bar-fill {
-  height: 100%;
-  border-radius: 999px;
-  background: #1a1714;
-  transition: width 0.8s ease;
+.menu-list a:hover, .menu-list button:hover {
+  background: #000080;
+  color: white;
+  border-color: #ffffff;
 }
 
-@keyframes pulse {
-  0%,
-  100% {
-    opacity: 0.3;
-  }
-  50% {
-    opacity: 1;
-  }
+/* Taskbar */
+.taskbar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: #c0c0c0;
+  border-top: 2px solid #ffffff;
+  padding: 2px 6px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: 'MS Sans Serif', monospace;
+  font-size: 11px;
+  z-index: 100;
 }
 
-@keyframes blink {
-  0%,
-  100% {
-    opacity: 1;
-  }
-  50% {
-    opacity: 0.3;
-  }
+.start-button {
+  background: #c0c0c0;
+  border: 2px solid;
+  border-color: #ffffff #808080 #808080 #ffffff;
+  padding: 2px 8px;
+  font-weight: bold;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 4px;
 }
 
-@media (max-width: 900px) {
-  .projects-table-head,
-  .project-card {
-    grid-template-columns: 1.5fr 1fr !important;
-  }
-
-  .project-card > :nth-child(3),
-  .project-card > :nth-child(4) {
-    display: none;
-  }
-
-  .projects-table-head > :nth-child(3),
-  .projects-table-head > :nth-child(4) {
-    display: none;
-  }
+.start-button:active {
+  border-color: #808080 #ffffff #ffffff #808080;
 }
 
-@media (max-width: 768px) {
-  .page-shell {
-    padding: 0 1.25rem;
-  }
-
-  .two-column-grid {
-    grid-template-columns: 1fr !important;
-    gap: 2.5rem !important;
-  }
-
-  .navbar-links {
-    display: none !important;
-  }
-
-  .hero-scroll-hint {
-    display: none !important;
-  }
+.taskbar-time {
+  margin-left: auto;
+  border-left: 1px solid #808080;
+  padding-left: 8px;
 }
 
-@media (max-width: 640px) {
-  .projects-table-head {
-    display: none !important;
-  }
+/* Content styling inside windows */
+h1, h2, h3 {
+  font-weight: normal;
+  font-family: 'MS Sans Serif', monospace;
+  margin-bottom: 12px;
+}
 
-  .project-card {
-    grid-template-columns: 1fr !important;
-    gap: 0.8rem !important;
-    padding-left: 0 !important;
-    padding-right: 0 !important;
-  }
+h1 {
+  font-size: 18px;
+  border-left: 4px solid #000080;
+  padding-left: 8px;
+}
+
+h2 {
+  font-size: 14px;
+  border-bottom: 1px solid #c0c0c0;
+  padding-bottom: 2px;
+}
+
+.skill-list, .info-list {
+  list-style: none;
+  padding-left: 0;
+}
+
+.skill-list li, .info-list li {
+  margin: 6px 0;
+  font-family: monospace;
+  font-size: 12px;
+}
+
+hr {
+  border: none;
+  border-top: 1px solid #c0c0c0;
+  margin: 16px 0;
+}
+
+/* Back link / home button in window */
+.back-link {
+  display: inline-block;
+  margin-bottom: 16px;
+  background: #c0c0c0;
+  border: 2px solid;
+  border-color: #ffffff #808080 #808080 #ffffff;
+  padding: 2px 8px;
+  text-decoration: none;
+  color: black;
+  font-size: 11px;
+  cursor: pointer;
+}
+
+.back-link:active {
+  border-color: #808080 #ffffff #ffffff #808080;
+}
+
+
+
+
+
+
+
+/* Desktop icons hover effect */
+.desktop-icon {
+  transition: all 0.05s linear;
+}
+.desktop-icon:hover {
+  background: rgba(255,255,255,0.1);
+  outline: 1px solid #ffffff;
+  outline-offset: 2px;
+}
+
+/* Start menu button hover */
+.start-menu button:hover {
+  color: white;
+}
+
+/* Make sure background covers full screen */
+.xp-desktop {
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+
+
+
+
+
+
+/* Retro scrollbar for the notepad */
+.notepad-scroll::-webkit-scrollbar {
+  width: 14px;
+}
+.notepad-scroll::-webkit-scrollbar-track {
+  background: #c0c0c0;
+  border: 1px solid #808080;
+}
+.notepad-scroll::-webkit-scrollbar-thumb {
+  background: #c0c0c0;
+  border: 2px solid;
+  border-color: #ffffff #808080 #808080 #ffffff;
+}
+.notepad-scroll::-webkit-scrollbar-thumb:hover {
+  background: #b0b0b0;
 }
