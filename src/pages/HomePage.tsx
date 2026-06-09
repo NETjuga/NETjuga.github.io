@@ -825,7 +825,7 @@ Through this project, I am gaining hands-on experience in designing software for
   {
     label: "Music",
     title: "Music — House Music",
-    content: `I have a friend who's a DJ and hes pretty good at it, earlier this year i got into making house music. I tried out making beats, like rap beats first but i didnt like it at all those are super boring and so i switched to producsing some house and i quite enjoy it, i just use FL Studio and i've made some mixed that got a couple thousand views on youtube. I havent had the time recently tho to keep up with it but im hoping to make more stuff soon"`,
+    content: `I have a friend who's a DJ and hes pretty good at it, earlier this year i got into making house music. I tried out making beats, like rap beats first but i didnt like it at all those are super boring and so i switched to producsing some house and i quite enjoy it, i just use FL Studio and i've made some mixed that got a couple thousand views on youtube. I havent had the time recently tho to keep up with it but im hoping to make more stuff soon`,
   },
   {
     label: "Running",
@@ -872,7 +872,7 @@ const INTERESTS_DATA: InterestData[] = [
   {
     iconUrl: "https://win98icons.alexmeub.com/icons/png/joystick-4.png",
     name: "Star Wars",
-    desc: "Galaxy far, far away",
+    desc: "Andor is peak",
     terminal: `C:\Netjuga\interests> open starwars.txt
 
 I like star wars, the new stuff is bad but i still love it. Andor and rogue one are peak.
@@ -894,7 +894,7 @@ C:\Netjuga\interests> _`,
   {
     iconUrl: "https://win98icons.alexmeub.com/icons/png/joystick-4.png",
     name: "Minecraft",
-    desc: "Hardcore world since age 12",
+    desc: "i only play hardcore mode",
     terminal: `C:\Netjuga\interests> open minecraft.txt
 
  I love minecraft, i only really play on the same hardcore world i've been playing on since i was 12 which means i've been on this world for around 8-9 years now, and for anyone reading who doesn't know what hardcore is, its a difficulty which makes it so that when you die you can never play on the world again and i havent died in the entire time i've been on this world. I've done everything there is to do in minecraft at this point so i just go ahead with big building projects, the last one i did was inspired by cyber punk 2077 but i didnt end up finishing it, ill have some pictures/videos of the world from 2018 up until 2025. 
@@ -905,7 +905,7 @@ C:\Netjuga\interests> _`,
   {
     iconUrl: "https://win98icons.alexmeub.com/icons/png/progman_14-4.png",
     name: "Competitive Programming",
-    desc: "Algorithms & problem solving",
+    desc: "tryhard programming",
     terminal: `C:\Netjuga\interests> open comp_prog.txt
 
 Competitive programming is great fun—right up until some super talented Indian or Chinese contestant completely destroys my rating. I'll include a few screenshots of my rankings on Codeforces and other platforms.
