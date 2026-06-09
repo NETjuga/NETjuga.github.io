@@ -3,7 +3,7 @@ import PortfolioPage from './pages/PortfolioPage';
 import WorkingOnPage from './pages/WorkingOnPage';
 import UpToPage from './pages/UpToPage';
 import Homepage from './pages/HomePage';
-import BooksPage from './pages/bookspage';
+import BooksPage from './pages/BooksPage';
 import ProjectPage from './pages/ProjectPage';
 
 function App() {
