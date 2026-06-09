@@ -23,12 +23,15 @@ import threeDeathsCover from "../images/threedeaths-BC.png";
 import phillipCover from "../images/phillip-BC.png";
 import berserkCover from "../images/Berserk-BC.png";
 
-import somenightsMp3 from "../Songs/somenights.mp3";
+
 import somenightsCover from "../images/somenights.png";
 import undergroundcover from "../images/Underground.png";
-import undergroundmp3 from "../Songs/underground.mp3";
 import TNScover from "../images/TN.png";
+
+import somenightsMp3 from "../Songs/Somenights.mp3";
+import undergroundmp3 from "../Songs/underground.mp3";
 import TNSmp3 from "../Songs/TNS.mp3";
+
 
 import runStamp from "../images/RUNNOTE.png";
 
