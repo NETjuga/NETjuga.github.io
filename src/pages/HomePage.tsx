@@ -115,16 +115,17 @@ interface SkillProject {
   videos?:string[];
   prefix?: string; // optional custom prefix
 }
-interface CurrentProject { 
-  id: string; 
-  title: string; 
-  type: string; 
-  year: number; 
-  status: string; 
-  tags: string[]; 
-  description: string; 
-  files: { filename: string; details: string; }[]; 
-  url?: string; 
+interface CurrentProject {
+  id: string;
+  title: string;
+  type: string;
+  year: number;
+  status: string;
+  tags: string[];
+  description: string;
+  files: { filename: string; details: string; videoUrl?: string; }[]; // videoUrl on a .mp4 file embeds that YouTube video
+  url?: string;
+  videoUrl?: string; // fallback YouTube link (watch / youtu.be / embed) if a .mp4 file has no videoUrl of its own
 }
 
 // ─── DATA ─────────────────────────────────────────────────────────────────────
@@ -230,6 +231,12 @@ const MY_BOOKS: Book[] = [
   { id: 9,  title: "The Three Deaths",                      author: "Leo Tolstoy",         cover: threeDeathsCover, rating: 4, review: "A reflective short story contrasting three different attitudes toward death. It's another amazing piece of work from Leo Tolstoy. Despite how short this story is, it has stayed with me for years, almost as if the duration I spent reading it felt like a dream, and now I recollect any memory of reading it as a beautiful, insightful dream. If you haven't read this, please do. It's under 100 pages, from what I can remember, and it will be worth your time. It's a truly beautiful story that'll have you thinking for days upon days." },
   { id: 10, title: "The Gospel of Philip",                  author: "Unknown",             cover: phillipCover,     rating: 5, review: "The gospel of Philip is one of the Gnostic Christian texts uncovered in Egypt a few years ago, this book is TRULY fascinating, it paints christianity as a religion in a whole new light and makes you question not only christianity but every other religion, the gospel of Phillip turns the head on who we traditionally see Jesus as, according to this gospel, Jesus is a wise holder of divine knowledge on earth to spread it not a son of god or god in any way, judas isnt the bad guy either according to this, god in the old testament is a false god and Lucifer in turn is a hero who brings the divine light to people and leads them away from this false god, hence the name \"Lucifer the light bringer\", I could dwell into this more but I don't think its fitting for this little website" },
   { id: 11, title: "Berserk (Vol. 1‑14)",                   author: "Kentaro Miura",       cover: berserkCover,     rating: 5, review: "Berserk isn't just a manga/comic/anime it's one of the most devastating and beautiful stories ever told. The narrative is dark, brutal, and tragic, which stands in direct contrast to the contemporary wave of happy endings and neat victories displayed in stories like MHA, AOT, Naruto etc. Guts' journey is about enduring suffering, not triumphing over it. There are no clean wins, only survival and the faintest glimmer of hope. It's a story that stays with you, haunts you, and makes you appreciate the weight of every single panel. I could have put Dune here too – it's just as masterful – but Berserk holds a raw, emotional power that few works of fiction, regardless of medium, can match." },
+];
+
+// Books I'm currently reading (simple title/author list — no status indicators)
+const CURRENTLY_READING: { title: string; author: string }[] = [
+  { title: "The Sufism of Rumi", author: "K. Khosla" },
+  { title: "The Stranger", author: "Albert Camus" },
 ];
 
 const PROJECTS: Project[] = [
@@ -733,61 +740,99 @@ const CURRENT_PROJECTS: CurrentProject[] = [
     url: "https://ikioi.online",
   },
   {
-    id: "synthropic",
-    title: "Synthropic",
-    type: "Web App / AI",
+    id: "synveric",
+    title: "Synveric",
+    type: "Platform / AI",
     year: 2026,
-    status: "Building",
-    tags: ["React", "TypeScript", "Tailwind", "Node.js", "Shopify"],
-    description: "AI-powered dropshipping store builder – niche discovery, product margin analysis, brand kit, ad creatives, and store management.",
+    status: "Live",
+    tags: ["React", "TypeScript", "Supabase", "Shopify", "Stripe", "AI/ML"],
+    description: "An AI operating system for ecommerce — from a blank idea to a launch-ready, branded Shopify store in one guided workflow.",
+    // ▶ Each .mp4 file below carries its own YouTube link (watch, youtu.be, /shorts, or embed URL — all work).
+    //   Leave a videoUrl as "" to show the "video coming soon" placeholder for that file.
     files: [
       {
         filename: "README.txt",
-        details: `Synthropic – Build, Launch, Scale. Fast.
-  
-  Mission:
-  Synthropic helps dropshippers skip the guesswork and go from idea to launched store in a single workflow. AI handles niche analysis, product selection, brand creation, ad copy, theme generation, and store export.
-  
-  Core Features:
-  - Niche scoring: AI evaluates 500+ niches by competition, brandability, trend, and margin.
-  - Product margin analysis: Real cost data with predicted margin percentages.
-  - Store validation score: 0–10 rating based on market demand, risk, and profitability.
-  - Brand kit generation: Name, logo direction, colour palette – instant.
-  - Domain availability checker: Live search with best-price guarantee.
-  - Marketing playbook: TikTok, Instagram, Facebook ad hooks and scripts.
-  - Creative generation: Scroll‑stopping hooks and video scripts.
-  - One‑prompt Shopify theme: Describe your store, get a production‑ready Liquid theme.
-  - One‑click export: Download products.csv, brand-kit.md, ad-copy.md, theme prompt, and more.
-  
-  Target audience:
-  Solopreneurs, small teams, and enterprises launching or scaling dropshipping stores.
-  
-  Live at: (coming soon)
-  `
+        details: `Synveric — An AI operating system for ecommerce.
+
+  Synveric is an all-in-one, AI-native platform for dropshippers and ecommerce builders. It takes someone from a blank idea to a launch-ready, branded Shopify store — niche research, product discovery, brand identity, AI ad creatives, store design and one-click export — inside a single guided workflow, with an AI agent assisting at every step.
+
+  The problem it solves:
+  Launching a brand normally means stitching together a dozen disconnected tools — spreadsheets for research, a design tool for branding, an ad-creative app, a store builder, analytics dashboards, and a developer for anything custom. It's slow, expensive, and most decisions are made on guesswork. Synveric collapses that whole stack into one guided product and replaces the guesswork with live market/supplier data and AI generation.
+
+  The 9-step guided journey:
+  1. Niche Discovery — research and validate niches against live demand and competition signals.
+  2. Product Discovery — surface winning products with real margin, order-volume and trend data.
+  3. Store Validation — pressure-test the store concept before committing.
+  4. Brand Creation — generate a brand identity (naming, positioning, brand kit).
+  5. Domain Finder — find and check available domains.
+  6. Marketing Setup — connect ad accounts and configure the go-to-market.
+  7. Creative Generator — produce on-brand image and video ad creatives with AI.
+  8. Store Design — design a themed, conversion-ready storefront.
+  9. Store Export — one-click, import-ready Shopify export (products, brand kit, theme, ad copy).
+
+  Status: Live.
+  Try it at: https://synveric.com`
       },
       {
-        filename: "why.txt",
-        details: `Why I built Synthropic
-  
-  Even though platforms like Shopify have made it incredibly easy to start a store technically, most people still fail because they don't know where they fit in the market. They struggle to find a niche, to find winning products, to create a brand that stands out, and to produce creatives that actually convert.
-  
-  Synthropic alleviates all of that.
-  
-  What Synthropic does:
-  - Finds new niches and scores them by competition, demand, and profitability.
-  - Identifies well‑performing products within each niche, with real margin data.
-  - Provides a website builder that lets you manage your store's UI directly from our platform.
-  - Helps you manage products and creatives in one place.
-  - Gives advanced analytics and KPIs to track what's working and what isn't.
-  
-  The AI engine – Synthropic‑V1 – is a custom‑built model dedicated to generating high‑performing creatives for Meta, TikTok, and Google Ads. It learns from real ad data to write hooks, scripts, and copy that stop the scroll.
-  
-  But Synthropic isn't only for new stores. It can also connect to your existing Shopify store, pull your product and sales data, and provide highly detailed analytics – helping you scale without switching tools.
-  
-  Whether you're starting from zero or already have a store, Synthropic gives you a clear sense of direction. You'll finally know where you stand in the market and exactly what to do next.`
+        filename: "modules.txt",
+        details: `Synveric — Key modules
+
+  Beyond the linear workflow, Synveric is a full dashboard of standalone tools:
+
+  - Product Finder — two live "engines" (Synveric-MA and Synveric-CJ) scan marketplace and warehouse catalogues, then score each product on margin, demand, reliability and competition.
+  - Creative Studio — turn any product into image and video ad creatives, with support for 20+ leading image models (FLUX Pro, Ideogram, Recraft, GPT Image, DALL·E 3, Google Nano Banana Pro) plus an in-house Synveric D-0 model tuned for ecommerce.
+  - AI Agent — a conversational agent (running on the latest Claude models) that can source more consistent suppliers, pick the top-performing ad, localize creatives into other languages/markets, and drive the workflow "just by asking".
+  - Analytics — connect Meta, TikTok and Google to pull ad metrics and tie performance back to specific products and creatives.
+  - Niche & Market research views, Domain manager, Website builder, Shopify sync, Templates/Marketplace, and account/billing settings.
+
+  Synveric-SC:
+  A distinct product within the platform — an AI builder that generates premium websites, Shopify apps, ecommerce tools and custom widgets from a single prompt, with GitHub export, direct Shopify push, and widget publishing, so the output is production-ready rather than a mockup.`
+      },
+      {
+        filename: "stack.txt",
+        details: `Synveric — Technology
+
+  Frontend:
+  - React 18 + Vite, styled with Tailwind CSS
+  - Framer Motion for the animation-heavy marketing site and product UI
+  - Zustand for state, React Router for navigation
+  - Sentry for error monitoring
+
+  Backend & infrastructure:
+  - Supabase — Postgres, Auth, Storage, and row-level security (RLS) throughout
+  - Supabase Edge Functions (Deno) power the entire server layer — 30+ functions covering AI generation, product search, OAuth, billing and webhooks
+  - Stripe for payments (subscriptions, credit top-ups, marketplace packs) via checkout, webhooks and a customer portal — card data never touches the app's servers
+
+  Integrations:
+  - Shopify (OAuth, store push, webhooks, verification)
+  - Meta / TikTok / Google (ad-account OAuth + metric sync)
+  - AliExpress & CJ product-search APIs for live sourcing data
+  - GitHub export for Synveric-SC builds
+
+  AI layer:
+  - Claude models for the agent and Synveric-SC chat
+  - A generation service fronting 20+ image models, with prompt-enhancement, niche-research and product-analysis functions
+
+  Motion graphics:
+  - Cinematic marketing films built in Remotion (React-based programmatic video) — a node-graph "Flow" film showing Product Finder x Creative Studio x the Agent as one continuous canvas, plus product ad spots, all rendered at 1080p/4K.`
+      },
+      {
+        filename: "AD1.mp4",
+        details: `A quick walkthrough of Synveric — what it is, and how it takes you from a blank idea to a launched, branded Shopify store. Live now at https://synveric.com`,
+        videoUrl: "https://youtu.be/BOb-uWfcjQU"
+      },
+      {
+        filename: "AD2.mp4",
+        details: `Synveric in action — another look at the platform. Live now at https://synveric.com`,
+        videoUrl: "https://youtu.be/I4KFtu1ce08"
+      },
+      {
+        filename: "AD3.mp4",
+        details: `Synveric in action — another look at the platform. Live now at https://synveric.com`,
+        videoUrl: "https://youtu.be/rB7d4HO7avc"
       }
     ],
-    url: "",
+    url: "https://synveric.com",
   },
 ];
 
@@ -1082,13 +1127,13 @@ const SKILL_PROJECTS: Record<string, SkillProject[]> = {
   ],
   "PostgreSQL": [
     {
-      title: "Synthropic — Dropshipping Analytics",
-      description: "Multi‑tenant PostgreSQL schema",
-      prefix: "For Synthropic, I designed a multi‑tenant PostgreSQL schema with row‑level security to isolate tenants. ",
+      title: "Synveric — Ecommerce Analytics",
+      description: "Multi‑tenant Postgres schema on Supabase",
+      prefix: "For Synveric, I designed a multi‑tenant Postgres schema on Supabase with row‑level security to isolate every account. ",
       details: "I used materialised views to power real‑time dashboards and optimised indexes, reducing query times by 10×.",
-      tags: ["PostgreSQL","Row-Level Security","Indexes"],
+      tags: ["PostgreSQL","Row-Level Security","Indexes","Supabase"],
       year: 2026,
-      status: "Building"
+      status: "Live"
     },
   ],
   "Go": [
@@ -1710,7 +1755,7 @@ function DesktopIcon({ iconUrl, label, onClick, selected, onDoubleClick, size = 
 // ─── RETRO IDE — Current Projects ────────────────────────────────────────────
 function CurrentProjectsIDE({ onClose }: { onClose: () => void }) {
   const [expandedFolders, setExpandedFolders] = useState<Record<string, boolean>>({});
-  const [selectedFile, setSelectedFile] = useState<{ project: CurrentProject; file: { filename: string; details: string } } | null>(null);
+  const [selectedFile, setSelectedFile] = useState<{ project: CurrentProject; file: { filename: string; details: string; videoUrl?: string } } | null>(null);
 
   const toggleFolder = (projectId: string) => {
     setExpandedFolders(prev => ({ ...prev, [projectId]: !prev[projectId] }));
@@ -1731,8 +1776,28 @@ function CurrentProjectsIDE({ onClose }: { onClose: () => void }) {
   const fileIcon = (filename: string) => {
     if (filename.endsWith(".cpp") || filename.endsWith(".vst3")) return "📘";
     if (filename.endsWith(".py")) return "📒";
+    if (filename.endsWith(".mp4") || filename.endsWith(".mov")) return "🎬";
     return "📄";
   };
+
+  // Normalise any YouTube link (watch?v=, youtu.be/, /shorts/, or already-embed) into an embed URL.
+  const toEmbedUrl = (raw: string): string => {
+    const url = raw.trim();
+    if (!url) return "";
+    try {
+      const u = new URL(url);
+      if (u.hostname.includes("youtu.be")) return `https://www.youtube.com/embed/${u.pathname.slice(1)}`;
+      if (u.pathname.startsWith("/embed/")) return url;
+      if (u.pathname.startsWith("/shorts/")) return `https://www.youtube.com/embed/${u.pathname.split("/")[2]}`;
+      const v = u.searchParams.get("v");
+      if (v) return `https://www.youtube.com/embed/${v}`;
+    } catch {
+      /* fall through to returning the raw string */
+    }
+    return url;
+  };
+
+  const isVideoFile = (filename?: string) => !!filename && (filename.endsWith(".mp4") || filename.endsWith(".mov"));
 
   const getLineColor = (line: string): string => {
     const trimmed = line.trim();
@@ -1816,18 +1881,43 @@ function CurrentProjectsIDE({ onClose }: { onClose: () => void }) {
               </div>
             )}
           </div>
-          <div style={{ flex: 1, overflow: "auto", display: "flex", background: "#ffffff" }}>
-            <div style={{ background: "#f0ede8", padding: "12px 6px 12px 4px", borderRight: "1px solid #d0ccc4", flexShrink: 0, userSelect: "none" }}>
-              {currentFile?.details.split("\n").map((_, i) => (
-                <div key={i} style={{ fontFamily: "'Courier New', monospace", fontSize: 12, lineHeight: "20px", color: "#888888", textAlign: "right", minWidth: 28 }}>{i + 1}</div>
-              ))}
+          {isVideoFile(currentFile?.filename) ? (
+            <div style={{ flex: 1, overflow: "auto", background: "#1a1a1a", padding: "20px 24px", display: "flex", flexDirection: "column", alignItems: "center" }}>
+              <div style={{ width: "100%", maxWidth: 720 }}>
+                <div style={{ position: "relative", width: "100%", paddingTop: "56.25%", background: "#000000", border: "2px solid", borderColor: "#808080 #ffffff #ffffff #808080", boxShadow: "0 4px 16px rgba(0,0,0,0.5)" }}>
+                  {(currentFile?.videoUrl || currentProject?.videoUrl) ? (
+                    <iframe
+                      src={toEmbedUrl(currentFile?.videoUrl || currentProject?.videoUrl || "")}
+                      title={`${currentProject?.title} — ${currentFile?.filename}`}
+                      style={{ position: "absolute", inset: 0, width: "100%", height: "100%", border: "none" }}
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                      allowFullScreen
+                    />
+                  ) : (
+                    <div style={{ position: "absolute", inset: 0, display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", gap: 10, color: "#cfcfcf", fontFamily: "Tahoma, sans-serif", textAlign: "center", padding: 16 }}>
+                      <div style={{ fontSize: 40 }}>▶</div>
+                      <div style={{ fontSize: 13, fontWeight: "bold" }}>Demo video coming soon</div>
+                      <div style={{ fontSize: 11, color: "#999999", maxWidth: 360 }}>Paste your YouTube link into the <span style={{ fontFamily: "monospace", color: "#8fd0ff" }}>videoUrl</span> field of the Synveric project to embed it here.</div>
+                    </div>
+                  )}
+                </div>
+                <div style={{ marginTop: 12, color: "#d8d8d8", fontFamily: "Tahoma, sans-serif", fontSize: 12, lineHeight: 1.5 }}>{currentFile?.details}</div>
+              </div>
             </div>
-            <pre style={{ flex: 1, margin: 0, padding: "12px 16px", fontFamily: "'Courier New', monospace", fontSize: 12, lineHeight: "20px", color: "#1a1a1a", whiteSpace: "pre-wrap", wordBreak: "break-word", background: "#ffffff" }}>
-              {currentFile?.details.split("\n").map((line, i) => (
-                <span key={i} style={{ display: "block", color: getLineColor(line) }}>{line || " "}</span>
-              ))}
-            </pre>
-          </div>
+          ) : (
+            <div style={{ flex: 1, overflow: "auto", display: "flex", background: "#ffffff" }}>
+              <div style={{ background: "#f0ede8", padding: "12px 6px 12px 4px", borderRight: "1px solid #d0ccc4", flexShrink: 0, userSelect: "none" }}>
+                {currentFile?.details.split("\n").map((_, i) => (
+                  <div key={i} style={{ fontFamily: "'Courier New', monospace", fontSize: 12, lineHeight: "20px", color: "#888888", textAlign: "right", minWidth: 28 }}>{i + 1}</div>
+                ))}
+              </div>
+              <pre style={{ flex: 1, margin: 0, padding: "12px 16px", fontFamily: "'Courier New', monospace", fontSize: 12, lineHeight: "20px", color: "#1a1a1a", whiteSpace: "pre-wrap", wordBreak: "break-word", background: "#ffffff" }}>
+                {currentFile?.details.split("\n").map((line, i) => (
+                  <span key={i} style={{ display: "block", color: getLineColor(line) }}>{line || " "}</span>
+                ))}
+              </pre>
+            </div>
+          )}
           <div style={{ background: "#d4d0c8", borderTop: "2px solid #808080", padding: "2px 10px", display: "flex", alignItems: "center", gap: 16, flexShrink: 0 }}>
             <span style={{ fontFamily: "Tahoma, sans-serif", fontSize: 10, color: "#000000" }}>⎇ main</span>
             <span style={{ fontFamily: "Tahoma, sans-serif", fontSize: 10, color: "#000000" }}>{currentProject?.type || ""}</span>
@@ -1842,7 +1932,7 @@ function CurrentProjectsIDE({ onClose }: { onClose: () => void }) {
               </div>
               {currentProject?.url && (
                 <a href={currentProject.url} target="_blank" rel="noopener noreferrer" style={{ background: "#c0c0c0", border: "2px solid", borderColor: "#ffffff #808080 #808080 #ffffff", color: "#000000", fontFamily: "Tahoma, sans-serif", fontSize: 10, padding: "3px 10px", cursor: "pointer", textDecoration: "none" }}>
-                  View Project →
+                  {currentProject.status === "Live" ? "Visit live site →" : "View Project →"}
                 </a>
               )}
             </div>
@@ -2471,6 +2561,13 @@ function BooksWindow({ onClose }: { onClose: () => void }) {
     <DraggableModal title="My Books — Top 10" iconUrl={ICON_BOOK} onClose={onClose} style={{ width: 920, minHeight: 520 }}>
       <div style={{ display: "flex", flex: 1, overflow: "hidden" }}>
         <div style={{ width: 260, borderRight: "2px solid #808080", background: "#c0c0c0", overflowY: "auto" }}>
+          <div style={{ background: "#808080", padding: "3px 10px", fontFamily: "Tahoma, sans-serif", fontSize: 10, color: "white", fontWeight: "bold" }}>CURRENTLY READING</div>
+          {CURRENTLY_READING.map((b) => (
+            <div key={b.title} style={{ padding: "7px 10px", borderBottom: "1px solid #a0a0a0", fontFamily: "Tahoma, sans-serif" }}>
+              <div style={{ fontSize: 10, fontWeight: "bold", color: "black" }}>{b.title}</div>
+              <div style={{ fontFamily: "monospace", fontSize: 9, color: "#555" }}>{b.author}</div>
+            </div>
+          ))}
           <div style={{ background: "#808080", padding: "3px 10px", fontFamily: "Tahoma, sans-serif", fontSize: 10, color: "white", fontWeight: "bold" }}>TOP 10 BOOKS</div>
           {MY_BOOKS.map((b, i) => (
             <div key={b.id} onClick={() => setSelected(b)} style={{ display: "flex", alignItems: "center", gap: 8, padding: "7px 10px", background: selected.id === b.id ? "#000080" : "transparent", color: selected.id === b.id ? "white" : "black", cursor: "pointer", borderBottom: "1px solid #a0a0a0", fontFamily: "Tahoma, sans-serif", fontSize: 11 }}
