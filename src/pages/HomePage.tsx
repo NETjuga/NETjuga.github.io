@@ -2473,9 +2473,6 @@ function MusicPlayer({ song, onClose }: { song: Song; onClose: () => void }) {
             </div>
           </div>
         </div>
-        <div style={{ background: "#ece9d8", borderTop: "2px solid #808080", padding: "8px 16px", textAlign: "center", fontSize: 10, fontFamily: "monospace", color: "#444", flexShrink: 0 }}>
-          Find all my music at <a href="https://jugastracks.quest" target="_blank" style={{ color: "#000080", textDecoration: "underline" }}>jugastracks.quest</a> and mixes on YouTube <a href="https://youtube.com/@jugamadethis" target="_blank" style={{ color: "#000080", textDecoration: "underline" }}>@jugamadethis</a>
-        </div>
       </div>
       <StatusBar text={`Now playing: ${currentSong.title} · ${currentSong.genre}`} />
     </DraggableModal>
