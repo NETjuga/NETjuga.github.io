@@ -400,50 +400,89 @@ const PROJECTS: Project[] = [
     ]
   },
   {
-    slug: "cybers-online",
-    title: "Cybers.online",
-    description: "AI-powered cybersecurity platform providing advanced threat detection and digital footprint analysis.",
-    type: "Cybersecurity Platform",
-    year: 2023,
-    tags: ["AI", "Machine Learning", "Cybersecurity", "Real-time Analytics", "Cloud Computing", "Data Visualization"],
+    slug: "theedenproject",
+    title: "TheEdenProject",
+    description: "Decision intelligence for security and privacy investigation — eleven analysis modules writing into one shared entity graph. (Formerly Cyberskope; rebuilt from the ground up in 2025.)",
+    type: "Web App / Security Tooling",
+    year: 2025,
+    tags: ["React 18", "TypeScript", "Vite", "Tailwind", "Netlify Functions", "Claude API", "Web Crypto"],
     status: "Live",
     action: "view",
     files: [
       {
         name: "README.txt",
         type: "doc",
-        content: `CYBERSKOPE
-  AI-POWERED CYBERSECURITY PLATFORM
-  
-  CyberSkope represents the next generation of cybersecurity platforms, leveraging advanced artificial intelligence to provide comprehensive threat detection and digital footprint analysis. Built to protect organizations from evolving cyber threats, with an end goal of this project being to create an API which acts as a 24/7 cybersecurity agent for organisations.
-  
-   VISIT CYBERSKOPE: https://cybers.online
-  
-  API KEY FEATURES – Advanced AI-driven security capabilities
-  
-   AI THREAT DETECTION
-  Advanced machine learning algorithms continuously monitor and analyze network traffic to identify potential threats in real-time.
-  
-   DIGITAL FOOTPRINT ANALYSIS
-  Comprehensive scanning and analysis of your organization's digital presence to identify vulnerabilities and exposure risks.
-  
-   SECURITY MONITORING
-  24/7 automated monitoring with intelligent alerting systems to ensure immediate response to security incidents.
-  
-  TECHNOLOGY STACK
-  Built with the most efficient and reliable technologies:
-  
-  • Artificial Intelligence
-  • Machine Learning
-  • Cybersecurity
-  • Real-time Analytics
-  • Cloud Computing
-  • Data Visualization
-  
-  Status: Live – API in active development.
-  `
+        content: `TheEdenProject — Decision intelligence for security and privacy investigation
+
+  Live: https://theedenproject.online
+
+  Note on lineage: TheEdenProject is what Cyberskope (Cybers.online) became. In 2025 I rebuilt the project from the ground up — the same mission of security intelligence, re-architected around one shared entity graph instead of isolated, one-off scans.
+
+  What it is:
+  Most security tool collections are a drawer of unrelated gadgets — you run a scan, get a card, and become the integration layer yourself. TheEdenProject resolves every observation onto typed objects and relationships instead.
+
+  Eleven modules cover network intelligence, DNS and email-authentication posture, phishing URL analysis, transport auditing, credential modelling, browser fingerprinting, image forensics and on-chain attribution. Each one writes into a shared case graph, so an address seen by one module and resolved by another converge on a single node — every lookup compounds instead of dead-ending in its own card.
+
+  Every module runs without an API key. Passwords, images and fingerprints never leave the browser. Findings carry their reasoning and weight, so an analyst can disagree with a specific step rather than a black-box score.
+
+  An AI assistant (Eden Intel) stays grounded in your own evidence. No account, no API keys.
+
+  Status: Live at https://theedenproject.online
+`
       },
-      
+      {
+        name: "engineering.txt",
+        type: "doc",
+        content: `TheEdenProject — The engineering worth highlighting
+
+  Custom entity-resolution data model:
+  Eleven typed object kinds and ten relationship kinds, with canonical-ID normalisation so HTTPS://Example.com/ and https://example.com collapse to one node. Repeat observations merge rather than duplicate.
+
+  Password strength modelled from scratch:
+  Character-class entropy scores P@ssw0rd123! as strong when it falls in under a second. I implemented the zxcvbn approach instead: pattern matchers for dictionaries, keyboard walks, sequences, dates and leetspeak, then a dynamic program over positions to find the cheapest decomposition. Converts to crack time across five attack scenarios using real hashcat benchmarks.
+
+  Phishing detection heuristics:
+  25+ structural checks including Damerau-Levenshtein typosquat distance with homoglyph normalisation (paypa1 -> paypal), brand-demotion detection, open-redirect chains, multi-layer encoding and bidirectional control characters. Catches fresh phishing hours before blocklists have the domain.
+
+  Hand-rolled force-directed graph:
+  ~40 lines of Verlet integration with O(n^2) repulsion, spring forces and pointer-drag pinning, in SVG. No layout library — the dependency would have dwarfed the implementation.
+
+  Graceful degradation as an architecture, not a fallback:
+  Every capability has a keyless path (public DoH resolvers, public Ethereum RPC, HIBP k-anonymity, browser APIs). Credentials deepen results; they are never the difference between working and broken. The client reports which path it took so the UI stays honest about provenance.
+
+  Privacy-preserving by construction:
+  Breach checks send five hex characters of a SHA-1 hash and match the remaining thirty-five locally, so the service cannot determine the input.
+
+  State without prop drilling:
+  The case store is an external store read via useSyncExternalStore, because modules commit findings from async callbacks that outlive their render tree.
+`
+      },
+      {
+        name: "metrics.txt",
+        type: "doc",
+        content: `TheEdenProject — Metrics
+
+  Hand-written code:      ~11,200 lines across 49 files
+  Analysis engines:       ~2,500 lines
+  Modules:                11
+  Serverless functions:   5
+  Landing page payload:   ~72 kB gzipped JS
+  API keys required:      0
+
+  Tech stack:
+  React 18 · TypeScript · Vite · Tailwind CSS · Netlify Functions · Anthropic Claude API · Leaflet · DNS-over-HTTPS · Web Crypto API · Canvas/WebGL/AudioContext
+`
+      },
+      {
+        name: "design.txt",
+        type: "doc",
+        content: `TheEdenProject — Design notes
+
+  Dark-first, near-monochrome, square corners, hairline rules, uppercase mono "earmark" labels, tabular figures on every metric. Colour is reserved almost entirely for severity grading.
+
+  The visual language is deliberately modelled on Palantir's — including identifying their actual typeface (Alliance No.1, Degarism Studio) from their live stylesheet, and building the font stack so licensing it is a drop-in with no code changes.
+`
+      },
     ]
   },
   {
@@ -2040,6 +2079,16 @@ const handleContactSend = async () => {
                     <span style={{ textTransform: "capitalize" }}>{s}</span>
                   </button>
                 ))}
+                <button
+                  onClick={() => window.open("https://arslaanjugaportfolio.online", "_blank", "noopener,noreferrer")}
+                  title="Professional Portfolio"
+                  style={{ width: "100%", padding: "6px 8px", textAlign: "left", background: "rgba(0,0,0,0.6)", color: "white", border: "1px solid rgba(255,255,255,0.3)", borderColor: "transparent", fontFamily: "Tahoma, sans-serif", fontSize: 11, cursor: "pointer", fontWeight: "normal", display: "flex", alignItems: "center", gap: 7, transition: "all 0.1s" }}
+                  onMouseEnter={e => { e.currentTarget.style.background = "rgba(49,106,197,0.7)"; }}
+                  onMouseLeave={e => { e.currentTarget.style.background = "rgba(0,0,0,0.6)"; }}
+                >
+                  <XPImg url={ICON_WORLD} size={14} />
+                  <span>Portfolio ↗</span>
+                </button>
               </div>
             </div>
           </div>
