@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef, ReactNode, CSSProperties, MouseEvent } from "react";
 import avatar from "../images/avatar.png";
+import profilePic from "../images/portfoliopic.jpg";
 import bannerVideo from "../images/bannerback.mp4";
 import minecraftBook from "../images/mc-book.png";
 import windowsXP from "../images/windows-xp.png";
@@ -2044,7 +2045,7 @@ const handleContactSend = async () => {
     "Modding":                 modusericon,
   };
 
-  const avatarUrl = avatar;
+  const avatarUrl = profilePic;
   const videoUrl = bannerVideo;
 
   return (
