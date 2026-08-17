@@ -8,15 +8,15 @@
 
 ## About / Bio
 
-**Arslaan Ahmed (Netjuga)** — Software Engineer — 4+ yrs
+**Arslaan Ahmed (Netjuga)** — Aspiring Aerospace Engineer — EE + Software
 
-I'm an aspiring Software engineer with 3+ years of hands-on experience building full-stack systems, shipping products, and building apps people actually use.
+I'm an aspiring aerospace engineer with a strong grounding in electrical engineering and software. I like working right at the boundary of hardware and software — designing embedded systems, signal-processing pipelines, and the code that makes real-world electronics actually do something useful.
 
-I've built embedded systems in c++/python, deployed web apps used by people everyday, and written everything from Swift iOS apps to C++ network intrusion tools. I like making things that actually work and have utility to people.
+A lot of my work sits close to the metal: embedded C++/Python firmware, RF and wireless communications, digital signal processing, radar and sensor systems, and FPGA-based signal acquisition. I've built a computer-vision-controlled robotic hand, a mini radar system, and I contribute the Python software stack to an open-source radio-astronomy project mapping the 1.42 GHz hydrogen line across the Milky Way. Alongside the hardware I've shipped full-stack web and iOS apps that people use every day.
 
-I'm particularly interested in the aerospace industry, where software, systems engineering, and reliability come together to solve complex real-world problems. Outside of programming, I'm currently working towards obtaining my private pilot's licence, which has given me an even greater appreciation for aviation technology and the engineering that makes flight possible.
+I'm especially drawn to aerospace, where electrical engineering, systems design, and reliability come together to solve hard real-world problems. Outside of engineering I'm working towards obtaining my private pilot's licence, which has given me an even greater appreciation for avionics, control systems, and the engineering that makes flight possible.
 
-I'm currently looking for opportunities where I can contribute to ambitious projects, collaborate with experienced engineers, and continue developing my skills across software, systems, and product development.
+I'm currently looking for opportunities where I can contribute to ambitious projects, learn from experienced engineers, and keep developing my skills across electronics, embedded systems, and aerospace.
 
 ---
 
