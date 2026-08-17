@@ -1,6 +1,8 @@
 import { useState, useEffect, useRef, ReactNode, CSSProperties, MouseEvent } from "react";
 import avatar from "../images/avatar.png";
 import profilePic from "../images/portfoliopic.jpg";
+import rumiPdf from "../images/Les_trois_plans_de_l_existence_selon_Rumi.pdf";
+import godPdf from "../images/God_as_the_Self-Revealing_Ground_of_Reality-3.pdf";
 import bannerVideo from "../images/bannerback.mp4";
 import minecraftBook from "../images/mc-book.png";
 import windowsXP from "../images/windows-xp.png";
@@ -1256,6 +1258,7 @@ const ICON_MINECRAFT_BOOK = minecraftBook;
 const ICON_OBSIDI = "https://win98icons.alexmeub.com/icons/png/card_file-4.png";
 const ICON_FILE_VIDEO = "https://win98icons.alexmeub.com/icons/png/media_player-4.png";
 const ICON_DEVICE = "https://win98icons.alexmeub.com/icons/png/computer_explorer-4.png";
+const ICON_WRITING = textIcon; // same paper icon as README.txt in the portfolio project explorer
 
 function XPImg({ size = 32, url }: { size?: number; url: string }) {
   return (
@@ -2642,6 +2645,69 @@ function BooksWindow({ onClose }: { onClose: () => void }) {
   );
 }
 
+// ─── Writing Window (essays / reflections, presented as PDFs) ────────────────
+interface Writing { id: string; title: string; subtitle: string; blurb: string; pdf: string; }
+
+const WRITINGS: Writing[] = [
+  {
+    id: "god-self-revealing-ground",
+    title: "God as the Self-Revealing Ground of Reality",
+    subtitle: "Essay",
+    blurb: "An essay of mine on God as the self-revealing ground of reality.",
+    pdf: godPdf,
+  },
+  {
+    id: "rumi-trois-plans",
+    title: "Les trois plans de l'existence selon Rumi",
+    subtitle: "On “The Sufism of Rumi” — K. Khosla · français",
+    blurb: "A reflection on the three planes of existence according to Rumi.",
+    pdf: rumiPdf,
+  },
+];
+
+function WritingWindow({ onClose }: { onClose: () => void }) {
+  const [selected, setSelected] = useState<Writing>(WRITINGS[0]);
+  return (
+    <DraggableModal title="Writing — Reflections & Essays" iconUrl={ICON_WRITING} onClose={onClose} style={{ width: 960, minHeight: 560, maxHeight: "92vh" }}>
+      <div style={{ display: "flex", flex: 1, overflow: "hidden" }}>
+        {/* Left: list of titles */}
+        <div style={{ width: 250, borderRight: "2px solid #808080", background: "#c0c0c0", overflowY: "auto", flexShrink: 0 }}>
+          <div style={{ background: "#808080", padding: "3px 10px", fontFamily: "Tahoma, sans-serif", fontSize: 10, color: "white", fontWeight: "bold" }}>MY WRITING</div>
+          {WRITINGS.map(w => (
+            <div key={w.id} onClick={() => setSelected(w)} style={{ padding: "8px 10px", cursor: "pointer", borderBottom: "1px solid #a0a0a0", background: selected.id === w.id ? "#000080" : "transparent", color: selected.id === w.id ? "white" : "black", fontFamily: "Tahoma, sans-serif" }}
+              onMouseEnter={e => { if (selected.id !== w.id) { e.currentTarget.style.background = "#316ac5"; e.currentTarget.style.color = "white"; } }}
+              onMouseLeave={e => { if (selected.id !== w.id) { e.currentTarget.style.background = "transparent"; e.currentTarget.style.color = "black"; } }}>
+              <div style={{ display: "flex", alignItems: "center", gap: 6 }}>
+                <XPImg url={ICON_WRITING} size={16} />
+                <span style={{ fontSize: 11, fontWeight: "bold" }}>{w.title}</span>
+              </div>
+              <div style={{ fontSize: 9, fontFamily: "monospace", marginLeft: 22, opacity: 0.85 }}>{w.subtitle}</div>
+            </div>
+          ))}
+        </div>
+        {/* Right: header + open button + PDF viewer */}
+        <div style={{ flex: 1, display: "flex", flexDirection: "column", background: "#ece9d8", overflow: "hidden" }}>
+          <div style={{ padding: "10px 14px", borderBottom: "2px solid #808080", flexShrink: 0, display: "flex", alignItems: "flex-start", gap: 12 }}>
+            <div style={{ flex: 1 }}>
+              <div style={{ fontFamily: "Tahoma, sans-serif", fontSize: 14, fontWeight: "bold", color: "#000080" }}>{selected.title}</div>
+              <div style={{ fontFamily: "monospace", fontSize: 10, color: "#555", marginTop: 2 }}>{selected.subtitle}</div>
+              <div style={{ fontFamily: "Tahoma, sans-serif", fontSize: 11, color: "#444", marginTop: 6 }}>{selected.blurb}</div>
+            </div>
+            <a href={selected.pdf} target="_blank" rel="noopener noreferrer" style={{ flexShrink: 0, background: "#c0c0c0", border: "2px solid", borderColor: "#ffffff #808080 #808080 #ffffff", color: "#000000", fontFamily: "Tahoma, sans-serif", fontSize: 11, fontWeight: "bold", padding: "5px 12px", cursor: "pointer", textDecoration: "none", whiteSpace: "nowrap" }}>Open PDF ↗</a>
+          </div>
+          <div style={{ flex: 1, background: "#525252", overflow: "hidden" }}>
+            <iframe key={selected.id} src={`${selected.pdf}#view=FitH`} title={selected.title} style={{ width: "100%", height: "100%", border: "none", display: "block" }} />
+          </div>
+          <div style={{ background: "#ece9d8", borderTop: "2px solid #808080", padding: "6px 12px", flexShrink: 0, fontFamily: "monospace", fontSize: 10, color: "#555" }}>
+            📄 If the preview doesn't load in your browser, use “Open PDF ↗”.
+          </div>
+        </div>
+      </div>
+      <StatusBar text={`${WRITINGS.length} pieces · Viewing: ${selected.title}`} />
+    </DraggableModal>
+  );
+}
+
 // ─── BgPicker ─────────────────────────────────────────────────────────────────
 function BgPicker({ current, onSelect, onClose }: { current: string; onSelect: (v: string) => void; onClose: () => void }) {
   return (
@@ -2858,7 +2924,7 @@ function ConfirmDialog({ message, onConfirm, onCancel }: { message: string; onCo
 }
 
 // ─── Start Menu ───────────────────────────────────────────────────────────────
-type ModalType = "bgPicker" | "musicLib" | "games" | "books" | "portfolio" | "currentProjects" | "upTo" | "howTo" | "obsicdi" | "thisDevice" | "skillsSearch" | null;
+type ModalType = "bgPicker" | "musicLib" | "games" | "books" | "writing" | "portfolio" | "currentProjects" | "upTo" | "howTo" | "obsicdi" | "thisDevice" | "skillsSearch" | null;
 
 
 
@@ -3015,6 +3081,7 @@ function StartMenu({ onOpen, onClose }: { onOpen: (m: ModalType) => void; onClos
     { label: "Current Projects",  modal: "currentProjects" as ModalType, iconUrl: ICON_TOOLS },
     { label: "What I'm up to",    modal: "upTo"            as ModalType, iconUrl: ICON_NOTEPAD },
     { label: "Books",             modal: "books"           as ModalType, iconUrl: ICON_MINECRAFT_BOOK },
+    { label: "Writing",           modal: "writing"         as ModalType, iconUrl: ICON_WRITING },
     { label: "Games",             modal: "games"           as ModalType, iconUrl: ICON_STICK },
     { label: "My Music",          modal: "musicLib"        as ModalType, iconUrl: ICON_MUSIC },
     { label: "How To Use",        modal: "howTo"           as ModalType, iconUrl: ICON_HELP },
@@ -3053,6 +3120,7 @@ const DESKTOP_ICONS = [
   { label: "Current\nProjects", iconUrl: ICON_TOOLS,          modal: "currentProjects" as ModalType },
   { label: "What I'm\nup to",   iconUrl: ICON_NOTEPAD,        modal: "upTo"            as ModalType },
   { label: "Books",             iconUrl: ICON_MINECRAFT_BOOK, modal: "books"           as ModalType },
+  { label: "Writing",           iconUrl: ICON_WRITING,        modal: "writing"         as ModalType },
   { label: "My Music",          iconUrl: ICON_MUSIC,          modal: "musicLib"        as ModalType },
   { label: "Appearance",        iconUrl: ICON_PAINT,          modal: "bgPicker"        as ModalType },
   { label: "Games",             iconUrl: ICON_STICK,          modal: "games"           as ModalType },
@@ -3103,13 +3171,23 @@ export default function HomePage() {
 
   return (
     <div onClick={closeAll} style={{ background: bg, minHeight: "100vh", position: "relative", fontFamily: "Tahoma, 'MS Sans Serif', sans-serif", overflow: "hidden" }}>
-      <div style={{ position: "absolute", top: 16, left: 16, display: "flex", flexDirection: "column", gap: 4 }}>
-        {DESKTOP_ICONS.map((item, i) => (
-          <DesktopIcon key={item.label} iconUrl={item.iconUrl} label={item.label} selected={selectedIcon === i} size={item.size}
-          onClick={(e: MouseEvent<HTMLDivElement>) => { e.stopPropagation(); setSelectedIcon(i); }}
-          onDoubleClick={(e: MouseEvent<HTMLDivElement>) => { e.stopPropagation(); openModal(item.modal); setSelectedIcon(i); }}
-        />
-        ))}
+      <div style={{ position: "absolute", top: 16, left: 16, display: "flex", flexDirection: "row", gap: 16, alignItems: "flex-start" }}>
+        <div style={{ display: "flex", flexDirection: "column", gap: 4 }}>
+          {DESKTOP_ICONS.map((item, i) => (item.modal === "howTo" || item.modal === "obsicdi" || item.modal === "skillsSearch") ? null : (
+            <DesktopIcon key={item.label} iconUrl={item.iconUrl} label={item.label} selected={selectedIcon === i} size={item.size}
+              onClick={(e: MouseEvent<HTMLDivElement>) => { e.stopPropagation(); setSelectedIcon(i); }}
+              onDoubleClick={(e: MouseEvent<HTMLDivElement>) => { e.stopPropagation(); openModal(item.modal); setSelectedIcon(i); }}
+            />
+          ))}
+        </div>
+        <div style={{ display: "flex", flexDirection: "column", gap: 4 }}>
+          {DESKTOP_ICONS.map((item, i) => (item.modal === "howTo" || item.modal === "obsicdi" || item.modal === "skillsSearch") ? (
+            <DesktopIcon key={item.label} iconUrl={item.iconUrl} label={item.label} selected={selectedIcon === i} size={item.size}
+              onClick={(e: MouseEvent<HTMLDivElement>) => { e.stopPropagation(); setSelectedIcon(i); }}
+              onDoubleClick={(e: MouseEvent<HTMLDivElement>) => { e.stopPropagation(); openModal(item.modal); setSelectedIcon(i); }}
+            />
+          ) : null)}
+        </div>
       </div>
 
       <AboutDesktopWindow />
@@ -3121,6 +3199,7 @@ export default function HomePage() {
             {modal === "musicLib"        && !activeSong && <MusicLibrary onClose={() => closeModal("musicLib")} onPlay={s => { setActiveSong(s); setModal(null); }} />}
             {modal === "games"           && <GamesWindow onClose={() => closeModal("games")} />}
             {modal === "books"           && <BooksWindow onClose={() => closeModal("books")} />}
+            {modal === "writing"         && <WritingWindow onClose={() => closeModal("writing")} />}
             {modal === "portfolio"       && <PortfolioClipboard onClose={() => closeModal("portfolio")} />}
             {modal === "currentProjects" && <CurrentProjectsIDE onClose={() => closeModal("currentProjects")} />}
             {modal === "upTo"            && <UpToWindow onClose={() => closeModal("upTo")} />}
