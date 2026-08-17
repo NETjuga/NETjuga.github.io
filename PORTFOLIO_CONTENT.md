@@ -511,8 +511,7 @@ Berserk isn't just a manga/comic/anime it's one of the most devastating and beau
 ---
 
 ## Currently Reading
-- The Sufism of Rumi — K. Khosla
-- The Stranger — Albert Camus
+- Babel — R.F. Kuang
 
 ---
 

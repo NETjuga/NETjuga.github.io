@@ -236,8 +236,7 @@ const MY_BOOKS: Book[] = [
 
 // Books I'm currently reading (simple title/author list — no status indicators)
 const CURRENTLY_READING: { title: string; author: string }[] = [
-  { title: "The Sufism of Rumi", author: "K. Khosla" },
-  { title: "The Stranger", author: "Albert Camus" },
+  { title: "Babel", author: "R.F. Kuang" },
 ];
 
 const PROJECTS: Project[] = [
